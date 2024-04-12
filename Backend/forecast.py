@@ -1,4 +1,9 @@
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pmdarima import auto_arima
+import warnings
+from statsmodels.tsa.arima.model import ARIMA
 
 
 def forecast(inputlst,upto):
@@ -12,4 +17,7 @@ def forecast(inputlst,upto):
     start=len(data)
     end=len(data)+upto-1
     pred=model.predict(start=start,end=end,typ='levels').rename('ARIMA Predictions')
-    return pred.astype(int)
+    res = pred.astype(int)
+    for i in res:
+        inputlst.append(i)
+    return inputlst
