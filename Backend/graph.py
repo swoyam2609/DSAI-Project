@@ -15,12 +15,16 @@ for index, row in df2.iterrows():
     lstIndia.append(row['Cases'])
 
 
-def plot(lst: list):
+def plot(lst: list, withGlobal: bool, withIndia: bool):
     plt.figure(figsize=(10, 6))
     plt.plot(lst, label="Predicted")
-    plt.plot(lstGlobal, label="Covid-19 Global")
-    plt.plot(lstIndia, label="Covid-19 India")
+    if(withGlobal):
+        plt.plot(lstGlobal, label="Covid-19 Global")
+    if(withIndia):
+        plt.plot(lstIndia, label="Covid-19 India")
     plt.legend()
+    plt.xlabel("Days")
+    plt.ylabel("Infected Population")
     plt.savefig("./plot.png")
     plt.close()
     return os.path.abspath("plot.png")
