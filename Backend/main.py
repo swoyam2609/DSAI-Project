@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from fastapi import UploadFile, File
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import csv
 from forecast import forecast
+from graph import plot
 import uvicorn
 import os
 
@@ -18,6 +20,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/")
 def read_root():
@@ -37,7 +40,8 @@ async def upload_csv(file: UploadFile = File(...)):
                 continue
             lst.append(int(i))
     res = forecast(lst, 1143-len(lst))
-    return {"message": res}
+    resPath = plot(res)
+    return FileResponse(resPath)
 
 # run the app
 if __name__ == "__main__":
