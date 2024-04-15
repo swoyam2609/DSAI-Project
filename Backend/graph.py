@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
+from pathlib import Path
 
-df = pd.read_csv("./Dataset/global_cases.csv")
-df2 = pd.read_csv("./Dataset/india_cases.csv")
+df = pd.read_csv(Path().absolute()+"/Dataset/global_cases.csv")
+df2 = pd.read_csv(Path().absolute()+"/Dataset/india_cases.csv")
 
 lstGlobal = []
 lstIndia = []
