@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 df = pd.read_csv(str(Path().absolute())+"/Dataset/global_cases.csv")
-df2 = pd.read_csv(str(Path().absolute())+"/Dataset/india_cases.csv")
+df2 = pd.read_csv(str(Path().absolute())+"/Dataset/country_cases.csv")
 
 lstGlobal = []
 lstIndia = []
